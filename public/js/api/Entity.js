@@ -4,13 +4,15 @@
  * */
 class Entity {
 
+    static URL = '';
+
   /**
    * Запрашивает с сервера список данных.
    * Это могут быть счета или доходы/расходы
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list( data, callback = f => f ) {
-
+    return createRequest({url : this.URL, method: 'GET', responseType: 'json', data, callback});
   }
 
   /**
@@ -19,7 +21,9 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create( data, callback = f => f ) {
-
+    const _data = data;
+    _data._method = 'PUT';
+    return createRequest({url : this.URL, method: 'POST', responseType: 'json', _data, callback});
   }
 
   /**
@@ -27,7 +31,7 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static get( id = '', data, callback = f => f ) {
-
+    return createRequest({url : this.URL + '/' + id, method: 'GET', responseType: 'json', data, callback});
   }
 
   /**
@@ -35,7 +39,9 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static remove( id = '', data, callback = f => f ) {
-
+    const _data = data;
+    _data.id = id;
+    _data._method = 'DELETE';
+    return createRequest({url : this.URL, method: 'POST', responseType: 'json', _data, callback});
   }
 }
-
