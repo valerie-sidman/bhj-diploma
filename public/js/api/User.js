@@ -59,7 +59,7 @@ class User {
    * User.setCurrent.
    * */
   static login( data, callback = f => f ) {
-    return createRequest({url : this.URL + '/login', method: 'POST', responseType: 'json', data, callback: (err, response) => {
+    return createRequest({url : this.URL + '/login', method: 'POST', responseType: 'json', data: data.data, callback: (err, response) => {
       if (response.success) {
         this.setCurrent(response.user);
       }
@@ -75,7 +75,7 @@ class User {
    * User.setCurrent.
    * */
   static register( data, callback = f => f ) {
-    return createRequest({url : this.URL + '/register', method: 'POST', responseType: 'json', data, callback: (err, response) => {
+    return createRequest({url : this.URL + '/register', method: 'POST', responseType: 'json', data: data.data, callback: (err, response) => {
       if (response.success) {
         this.setCurrent(response.user);
       }

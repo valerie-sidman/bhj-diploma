@@ -11,7 +11,10 @@ class UserWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
-
+    if (this.element === null) {
+      throw new Error('Не был передан аргумент');
+    }
+    this.element = element;
   }
 
   /**
@@ -22,6 +25,9 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update() {
-
+    const userCurrent = User.current();
+    if (userCurrent) {
+      const name = document.querySelector('.user-name').textContent = userCurrent.name;
+    }
   }
 }

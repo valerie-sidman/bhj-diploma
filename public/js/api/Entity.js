@@ -21,9 +21,9 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create( data, callback = f => f ) {
-    const _data = data;
+    const _data = data.data;
     _data._method = 'PUT';
-    return createRequest({url : this.URL, method: 'POST', responseType: 'json', _data, callback});
+    return createRequest({url : this.URL, method: 'POST', responseType: 'json', data: _data, callback});
   }
 
   /**
