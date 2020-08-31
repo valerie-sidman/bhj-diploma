@@ -17,8 +17,8 @@ class AccountsWidget {
       throw new Error('Не был передан аргумент');
     }
     this.element = element;
-    this.registerEvents();
     this.update();
+    this.registerEvents();
   }
 
   /**
@@ -34,7 +34,7 @@ class AccountsWidget {
       e.preventDefault();
       App.getModal('createAccount').open();
     });
-    Array.from(createAccount.querySelectorAll('.account')).forEach(item => {
+    Array.from(document.querySelectorAll('.account')).forEach(item => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
         this.onSelectAccount(item);
@@ -60,7 +60,8 @@ class AccountsWidget {
         response.data.forEach((item) => {
           this.renderItem(item);
         });
-      })
+        this.registerEvents();
+      });
     }
   }
 
@@ -98,7 +99,7 @@ class AccountsWidget {
    * */
   getAccountHTML( item ) {
     return `
-    <li class="active account" data-id="${item.id}">
+    <li class="account" data-id="${item.id}">
     <a href="#">
         <span>${item.name}</span> /
         <span>${item.sum} ₽</span>
