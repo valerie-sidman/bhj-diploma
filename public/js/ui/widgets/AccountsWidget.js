@@ -55,12 +55,14 @@ class AccountsWidget {
   update() {
     const userCurrent = User.current();
     if (userCurrent) {
-      this.clear();
       Account.list(userCurrent, (err, response) => {
-        response.data.forEach((item) => {
-          this.renderItem(item);
-        });
-        this.registerEvents();
+        if (response.success) {
+          this.clear();
+          response.data.forEach((item) => {
+            this.renderItem(item);
+          });
+          this.registerEvents();  
+        }
       });
     }
   }

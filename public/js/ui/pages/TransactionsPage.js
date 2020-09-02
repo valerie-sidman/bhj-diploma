@@ -151,7 +151,7 @@ class TransactionsPage {
    * */
   getTransactionHTML( item ) {
     return `
-    <div class="transaction ${item.type == 'expense' ? 'transaction_expense' : 'transaction_income'} row">
+    <div class="transaction ${item.type == 'EXPENSE' ? 'transaction_expense' : 'transaction_income'} row">
     <div class="col-md-7 transaction__details">
       <div class="transaction__icon">
           <span class="fa fa-money fa-2x"></span>
